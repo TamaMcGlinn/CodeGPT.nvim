@@ -3,18 +3,15 @@ local Ui = require("codegpt.ui")
 
 local CommandsList = {}
 local cmd_default = {
-    model = "gpt-3.5-turbo",
-    max_tokens = 4096,
-    temperature = 0.8,
+    model = "gpt-6-luna",
+    max_completion_tokens = 4096, -- used to be max_tokens, but newer models with internal reasoning use this instead
+    temperature = 1,
     number_of_choices = 1,
     system_message_template = "You are a {{language}} coding assistant.",
     user_message_template = "",
     callback_type = "replace_lines",
     allow_empty_text_selection = false,
     extra_params = {}, -- extra parameters sent to the API
-
-    -- Newer models have longer limit for input tokens and shorter limit for output tokens
-    -- Use this value for output tokens limit, and `max_tokens` for input tokens limit
     max_output_tokens = nil,
 }
 

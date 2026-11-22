@@ -103,9 +103,9 @@ A full list of overrides
 
 | name                    | default         | description                                                                                                                                                       |
 |-------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| model                   | "gpt-3.5-turbo" | The model to use.                                                                                                                                                 |
-| max_tokens              | 4096            | The maximum number of tokens to use including the prompt tokens.                                                                                                  |
-| max_output_tokens       | nil             | To define max output tokens, excluding the prompt tokens. When this is not nil, `max_tokens` is the input tokens limit and this is the output tokens limit.       |
+| model                   | "gpt-6-luna"    | The model to use.                                                                                                                                                 |
+| max_completion_tokens   | 4096            | The maximum number of tokens to use including the prompt tokens.                                                                                                  |
+| max_output_tokens       | nil             | To define max output tokens, excluding the prompt tokens. When this is not nil, `max_completion_tokens` is the input tokens limit and this is the output tokens limit.       |
 | temperature             | 0.6             | 0 -> 1, what sampling temperature to use.                                                                                                                         |
 | system_message_template | ""              | Helps set the behavior of the assistant.                                                                                                                          |
 | user_message_template   | ""              | Instructs the assistant.                                                                                                                                          |
@@ -122,7 +122,7 @@ The overrides can be set globally using `vim.g["codegpt_global_commands_defaults
 ```lua
     vim.g["codegpt_global_commands_defaults"] = {
         model = "mixtral",
-        max_tokens = 4096,
+        max_completion_tokens = 4096,
         temperature = 0.4,
         -- extra_parms = { -- optional list of extra parameters to send to the API
         --     presence_penalty = 1,
@@ -204,9 +204,9 @@ The default command configuration is:
 
 ```lua
 {
-    model = "gpt-3.5-turbo",
-    max_tokens = 4096,
-    temperature = 0.6,
+    model = "gpt-6-luna",
+    max_completion_tokens = 4096,
+    temperature = 1,
     number_of_choices = 1,
     system_message_template = "",
     user_message_template = "",
@@ -394,7 +394,7 @@ vim.g["codegpt_commands"] = {
     },
 
     -- Overrides the max tokens to be 1024
-    max_tokens = 1024,
+    max_completion_tokens = 1024,
   },
   ["code_edit"] = {
     -- Overrides the system message template

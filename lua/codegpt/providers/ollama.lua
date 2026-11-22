@@ -23,7 +23,7 @@ local function generate_messages(command, cmd_opts, command_args, text_selection
     return messages
 end
 
-local function get_max_tokens(max_tokens, prompt)
+local function get_max_completion_tokens(max_tokens, prompt)
     local ok, total_length = Utils.get_accurate_tokens(prompt)
 
     if total_length >= max_tokens then
@@ -36,11 +36,11 @@ end
 function OllaMaProvider.make_request(command, cmd_opts, command_args, text_selection)
     -- NOTE Do not use the system message for now
     local messages = generate_messages(command, cmd_opts, command_args, text_selection)
-    local max_tokens = get_max_tokens(cmd_opts.max_tokens, prompt)
+    local max_tokens = get_max_completion_tokens(cmd_opts.max_completion_tokens, prompt)
 
     local request = {
         temperature = cmd_opts.temperature,
-        max_tokens= max_tokens,
+        max_completion_tokens = max_tokens,
         model = cmd_opts.model,
         messages = messages,
         stream = false,
